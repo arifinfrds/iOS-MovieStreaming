@@ -14,10 +14,10 @@ class ViewController: UIViewController {
     private var player: AVPlayer?
     private var playerViewController = AVPlayerViewController()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPlayerViewController()
+        title = "Movie Streaming"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,12 +32,18 @@ class ViewController: UIViewController {
         playerViewController.player = player
     }
     
+    // TODO: - Bisa Play dan pause dari object player dari playerViewController.
+    // NEXT: - manipulasi pakai kode HEMOCS.
     private func showPlayerViewController() {
         present(playerViewController, animated: true) {
             self.playerViewController.player?.play()
+            
+            let seconds = 4.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                self.playerViewController.player?.pause()
+            }
         }
     }
-
 
 }
 
